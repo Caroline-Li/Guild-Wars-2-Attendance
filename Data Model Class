@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package guildwarsattendance;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+/**
+ *
+ * @author li_873239
+ */
+public class DataModel implements Serializable
+{
+    private TreeMap<String, Member> members;
+    // <members> is a data structure to hold all of the member in the guild
+    // The map will be populated initially from the GW2 Server with all the members
+    // currently in KRTA. Then, the forum information will be imported, and any
+    // forum members not in the guild, will be added to the members map as well
+    // Key- Guild Wars 2 Account Name
+    // Calue- Member object representing forumName, account, rank, attendance
+    private TreeMap<String, String> forumMap;
+    // <forumsMap> is used to track Enjin forum account names with the actual 
+    // Guild Wars 2 accounts. Each Guild Wars 2 account is unique, however, there 
+    // may be duplicate forum accounts.
+
+    private HashMap<GregorianCalendar, ArrayList<String>> dailyAttendance;
+    // <dailyAttendance> is a map to keep a permanent record of all data captured
+    // from screenshots. This will faciliate correcting errors in attendance
+    // and errors in associations.
+    
+    private TreeSet<RaidDate> attendanceDates;
+    // Stores all of the completed attendance dates. These dates will be used
+    // to update the attendance table and help with summary calculations
+    
+    private HashMap<String, String> associationsMap;
+    // holds all of the associatios for TS Names and forum names with a 
+    // GW2 Account
+
+    public DataModel(TreeMap<String, Member> members, TreeMap<String, String> forumMap, HashMap<GregorianCalendar, ArrayList<String>> dailyAttendance, TreeSet<RaidDate> attendanceDates, HashMap<String, String> associationsMap) {
+        this.members = members;
+        this.forumMap = forumMap;
+        this.dailyAttendance = dailyAttendance;
+        this.attendanceDates = attendanceDates;
+        this.associationsMap = associationsMap;
+    }
+
+
+
+    public TreeMap<String, Member> getMembers() {
+        return members;
+    }
+
+    public TreeMap<String, String> getForumMap() {
+        return forumMap;
+    }
+
+    public HashMap<GregorianCalendar, ArrayList<String>> getDailyAttendance() {
+        return dailyAttendance;
+    }
+
+    public TreeSet<RaidDate> getAttendanceDates() {
+        return attendanceDates;
+    }
+
+    public HashMap<String, String> getAssociationsMap() {
+        return associationsMap;
+    }
+    
+}
