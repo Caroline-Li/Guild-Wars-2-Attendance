@@ -1,0 +1,94 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package guildwarsattendance;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
+/**
+ *
+ * @author li_873239
+ */
+public class Member implements Serializable
+{
+    
+    // Instance Variables
+    private String gw2Account;
+    private String forumName;
+    private String rank;
+    
+
+    private ArrayList<RaidDate> attendance; 
+    
+    // Constructors
+
+    public Member(String gw2Account, String forumName, String rank) {
+        this.gw2Account = gw2Account;
+        this.forumName = forumName;
+        this.rank = rank;
+
+        this.attendance = new ArrayList();
+    }
+    
+    public Member() {
+        this.gw2Account = "";
+        this.forumName = "";
+        this.rank = "";
+
+        this.attendance = new ArrayList();
+    }
+    
+    // Getters and Setters
+
+    public String getGw2Account() {
+        return gw2Account;
+    }
+
+    public String getForumName() {
+        return forumName;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+
+
+    public ArrayList<RaidDate> getAttendance() {
+        return attendance;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public void setForumName(String forumName) {
+        this.forumName = forumName;
+    }
+
+    public void setAttendance(ArrayList<RaidDate> attendance) {
+        this.attendance = attendance;
+    }
+    
+
+
+
+    
+    
+    // Overridden Methods from Object
+
+    @Override
+    public String toString() {
+        return "Member" + "gw2Account=" + gw2Account + ", forumName=" + forumName + ", rank=" + rank + 
+                "\n\tassociations="  + 
+                "\n\tattendance=" + attendance;
+    }
+    
+    
+  
+    
+}
